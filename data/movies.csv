@@ -1,0 +1,11 @@
+movie_id,title,genres,overview,cast,director,year
+1,The Matrix,"Action|Sci-Fi","A hacker discovers reality is a simulation and joins a rebellion.","Keanu Reeves|Laurence Fishburne|Carrie-Anne Moss",Lana Wachowski|Lilly Wachowski,1999
+2,Inception,"Action|Sci-Fi|Thriller","A thief who steals corporate secrets through dream-sharing is given a task of inception.","Leonardo DiCaprio|Joseph Gordon-Levitt|Elliot Page",Christopher Nolan,2010
+3,Interstellar,"Adventure|Drama|Sci-Fi","A team travels through a wormhole in space in an attempt to ensure humanity's survival.","Matthew McConaughey|Anne Hathaway|Jessica Chastain",Christopher Nolan,2014
+4,The Dark Knight,"Action|Crime|Drama","Batman faces the Joker, a criminal mastermind causing chaos in Gotham.","Christian Bale|Heath Ledger|Aaron Eckhart",Christopher Nolan,2008
+5,The Lord of the Rings: The Fellowship of the Ring,"Adventure|Fantasy","A meek Hobbit and his companions set out to destroy the One Ring.","Elijah Wood|Ian McKellen|Viggo Mortensen",Peter Jackson,2001
+6,The Shawshank Redemption,"Drama","Two imprisoned men bond over a number of years, finding solace and eventual redemption.","Tim Robbins|Morgan Freeman|Bob Gunton",Frank Darabont,1994
+7,The Godfather,"Crime|Drama","The aging patriarch of an organized crime dynasty transfers control to his reluctant son.","Marlon Brando|Al Pacino|James Caan",Francis Ford Coppola,1972
+8,Pulp Fiction,"Crime|Drama","The lives of two mob hitmen, a boxer, a gangster's wife, and a pair of diner bandits intertwine.","John Travolta|Samuel L. Jackson|Uma Thurman",Quentin Tarantino,1994
+9,Avatar,"Action|Adventure|Fantasy","A paraplegic Marine is dispatched to Pandora on a unique mission.","Sam Worthington|Zoe Saldana|Sigourney Weaver",James Cameron,2009
+10,Spirited Away,"Animation|Adventure|Family","During her family's move to the suburbs, a girl wanders into a world ruled by gods and spirits.","Rumi Hiiragi|Miyu Irino|Mari Natsuki",Hayao Miyazaki,2001

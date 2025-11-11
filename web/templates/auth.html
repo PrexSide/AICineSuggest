@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{{ 'Sign Up' if signup else 'Sign In' }} • CineSuggest</title>
+	<link rel="stylesheet" href="/static/styles.css">
+	<style>
+	body { margin: 0; font-family: 'Inter', system-ui, sans-serif; background: #0a0e1a; color: #ffffff; overflow-x: hidden; }
+	
+	/* Static movie posters background */
+	.movie-bg { position: fixed; inset: 0; z-index: -2; overflow: hidden; 
+		background-image:
+			url('https://image.tmdb.org/t/p/w342/9gB0C6RzG32KzB8MSmc5QwDFi1o.jpg'),
+			url('https://image.tmdb.org/t/p/w342/eoVusT1j7fsUbho8HZJ2kC6gQh0.jpg'),
+			url('https://image.tmdb.org/t/p/w342/aKuFiU82s5ISJpGZp7YkIr3kCUd.jpg'),
+			url('https://image.tmdb.org/t/p/w342/hu40Uxp9WtpL34jv3zyWLb5zEVY.jpg'),
+			url('https://image.tmdb.org/t/p/w342/8OKmBV5BUFzmozIC3pPWKHy17kx.jpg'),
+			url('https://image.tmdb.org/t/p/w342/bptfVGEQuv6vDTIMVCHjJ9Dz8PX.jpg');
+		background-size: 200px 300px, 180px 270px, 220px 330px, 190px 285px, 210px 315px, 170px 255px;
+		background-position: 10% 20%, 85% 15%, 25% 70%, 75% 65%, 50% 10%, 90% 80%;
+		background-repeat: no-repeat;
+		filter: blur(3px);
+		opacity: 0.4;
+	}
+	
+	/* Gradient overlay */
+	.auth-overlay { position: fixed; inset: 0; z-index: -1; background: radial-gradient(circle at 30% 20%, rgba(91,192,190,0.12), transparent 50%), radial-gradient(circle at 70% 80%, rgba(168,197,255,0.08), transparent 50%), linear-gradient(135deg, rgba(10,14,26,0.75), rgba(28,37,65,0.85)); }
+	
+	/* Auth container */
+	.auth-container { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+	.auth-card { background: rgba(28,37,65,0.95); backdrop-filter: blur(20px); border: 1px solid rgba(91,192,190,0.2); border-radius: 20px; padding: 40px; width: 100%; max-width: 420px; box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+	
+	/* Branding */
+	.auth-brand { text-align: center; margin-bottom: 32px; }
+	.auth-logo { width: 48px; height: 48px; background: linear-gradient(135deg, #5bc0be, #a8c5ff); border-radius: 12px; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+	.auth-brand h1 { margin: 0; font-size: 28px; font-weight: 700; background: linear-gradient(135deg, #5bc0be, #a8c5ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+	.auth-brand p { margin: 8px 0 0; color: #94a3b8; font-size: 14px; }
+	
+	/* Form styles */
+	.auth-form { display: flex; flex-direction: column; gap: 20px; }
+	.form-group { position: relative; }
+	.form-label { display: block; margin-bottom: 6px; font-size: 14px; font-weight: 500; color: #e2e8f0; }
+	.form-input { width: 100%; background: rgba(15,23,42,0.8); color: #ffffff; border: 1px solid rgba(91,192,190,0.3); border-radius: 12px; padding: 14px 16px; font-size: 16px; transition: all 0.2s; }
+	.form-input:focus { outline: none; border-color: #5bc0be; box-shadow: 0 0 0 3px rgba(91,192,190,0.1); }
+	.form-input::placeholder { color: #64748b; }
+	
+	.password-field { position: relative; }
+	.password-toggle { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); background: none; border: none; color: #64748b; cursor: pointer; font-size: 18px; padding: 4px; transition: color 0.2s; }
+	.password-toggle:hover { color: #94a3b8; }
+	
+	.auth-btn { background: linear-gradient(135deg, #5bc0be, #4aa8a6); color: #ffffff; padding: 14px 20px; border: none; border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 16px; transition: all 0.2s; margin-top: 8px; }
+	.auth-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 25px rgba(91,192,190,0.3); }
+	
+	.auth-divider { text-align: center; margin: 24px 0; color: #64748b; font-size: 14px; }
+	.auth-switch { text-align: center; color: #94a3b8; }
+	.auth-switch a { color: #5bc0be; text-decoration: none; font-weight: 500; }
+	.auth-switch a:hover { text-decoration: underline; }
+	
+	.auth-error { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); color: #fca5a5; padding: 12px 16px; border-radius: 12px; margin-bottom: 20px; font-size: 14px; }
+	</style>
+</head>
+<body>
+	<!-- Static movie posters background -->
+	<div class="movie-bg"></div>
+	<div class="auth-overlay"></div>
+	
+	<div class="auth-container">
+		<div class="auth-card">
+			<div class="auth-brand">
+				<div class="auth-logo">🎬</div>
+				<h1>CineSuggest</h1>
+				<p>Your AI-powered movie companion</p>
+			</div>
+			
+			{% if error %}
+			<div class="auth-error">{{ error }}</div>
+			{% endif %}
+			
+			<form class="auth-form" method="post">
+				{% if signup %}
+				<div class="form-group">
+					<label class="form-label" for="username">Username</label>
+					<input type="text" name="username" id="username" class="form-input" placeholder="Enter your username" required>
+				</div>
+				{% endif %}
+				
+				<div class="form-group">
+					<label class="form-label" for="email">Email Address</label>
+					<input type="email" name="email" id="email" class="form-input" placeholder="Enter your email" required>
+				</div>
+				
+				<div class="form-group">
+					<label class="form-label" for="password">Password</label>
+					<div class="password-field">
+						<input type="password" name="password" id="password" class="form-input" placeholder="Enter your password" required>
+						<button type="button" class="password-toggle" onclick="togglePassword()">👁️</button>
+					</div>
+				</div>
+				
+				<button type="submit" class="auth-btn">{{ 'Create Account' if signup else 'Sign In' }}</button>
+			</form>
+			
+			<div class="auth-divider">
+				{% if signup %}
+				Already have an account? <a href="/login">Sign in here</a>
+				{% else %}
+				New to CineSuggest? <a href="/signup">Create an account</a>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+	<script>
+	// Password toggle
+	function togglePassword() {
+		const passwordField = document.getElementById('password');
+		const toggleBtn = document.querySelector('.password-toggle');
+		
+		if (passwordField.type === 'password') {
+			passwordField.type = 'text';
+			toggleBtn.textContent = '🙈';
+		} else {
+			passwordField.type = 'password';
+			toggleBtn.textContent = '👁️';
+		}
+	}
+	
+	// Static background - no animation needed
+	</script>
+</body>
+</html>

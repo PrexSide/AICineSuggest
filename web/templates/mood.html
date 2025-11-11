@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Explore by Emotion - AI Movie Recommender</title>
+	<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+	<div class="container">
+		<a class="back" href="/">← Back</a>
+		<h1>Explore by Emotion</h1>
+		<form method="get" class="form" title="Pick a mood to explore">
+			<label for="level" class="muted">Emotion level (Happy → Romantic → Nostalgic → Dark → Intense)</label>
+			<input type="range" id="level" name="level" min="0" max="100" value="{{ level }}" title="Slide to change mood">
+			<input type="number" name="k" value="12" min="3" max="50" placeholder="Results count" title="How many results to show">
+			<button type="submit" title="Show recommendations for this mood">Explore</button>
+		</form>
+		<h2>Showing: {{ label }}</h2>
+		<div class="grid">
+			{% for r in results %}
+			<div class="card">
+				{% if r.poster %}<img class="poster" src="{{ r.poster }}" alt="poster of {{ r.title }}">{% endif %}
+				<h3>{{ r.title }}{% if r.year %} ({{ r.year }}){% endif %}</h3>
+				<div class="muted">{{ r.genres }}</div>
+				{% if r.overview %}<p>{{ r.overview }}</p>{% endif %}
+				<a class="pill" href="/similar?title={{ r.title }}" title="Find movies similar to {{ r.title }}">Find similar</a>
+			</div>
+			{% else %}
+			<div>No matches found.</div>
+			{% endfor %}
+		</div>
+	</div>
+	<script src="/static/app.js"></script>
+</body>
+</html>

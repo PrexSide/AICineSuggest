@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Welcome • AI Movie Recommender</title>
+	<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body class="page welcome-bg">
+	<div class="container">
+		<nav class="navbar">
+			<div class="brand">
+				<span class="logo"></span>
+				<span>AI Movie Recommender</span>
+			</div>
+			<div class="nav-actions">
+				<a href="/discover">Search</a>
+				<a href="/mood">Explore by Emotion</a>
+				<a href="/logout" class="primary">Logout</a>
+			</div>
+		</nav>
+
+		<section class="hero-wrap">
+			<h1 class="hero-title">Find the perfect movie, faster</h1>
+			<p class="hero-sub">Search by keywords, discover similar films, or explore by emotion with an AI‑powered recommender.</p>
+			<div class="cta-group">
+				<a class="cta-btn" href="/discover" title="Go to main search">Start Searching</a>
+				<a class="cta-btn secondary" href="/mood" title="Explore by emotion">Explore by Emotion</a>
+				<a class="cta-btn secondary" href="/similar?title=Inception" title="Try a similar search">Try Similar to Inception</a>
+			</div>
+		</section>
+
+		<section class="features">
+			<div class="feature">
+				<h3>Smart Similarity</h3>
+				<p>Content-based recommendations powered by TF‑IDF and cosine similarity.</p>
+			</div>
+			<div class="feature">
+				<h3>Filters & Sorting</h3>
+				<p>Refine by genre and year, sort by relevance, title, or year.</p>
+			</div>
+			<div class="feature">
+				<h3>Beautiful UI</h3>
+				<p>Dark/light themes, posters, and shareable links out of the box.</p>
+			</div>
+		</section>
+
+		<section class="services">
+			<h2>Services</h2>
+			<div class="services-grid">
+				<div class="service hero">
+					<div class="bg" style="background-image:url('https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?q=80&w=1600');"></div>
+					<div class="content">
+						<h3>Keyword Search</h3>
+						<p>Describe what you feel like watching and get instant matches from metadata across titles, overviews, genres, cast, and directors.</p>
+						<div class="actions">
+							<a class="primary" href="/discover" title="Start keyword search">Start searching</a>
+						</div>
+					</div>
+				</div>
+				<div class="service hero">
+					<div class="bg" style="background-image:url('https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=1600');"></div>
+					<div class="content">
+						<h3>Similar Movies</h3>
+						<p>Find movies similar to a favorite title using content-based similarity—great for quick picks and marathons.</p>
+						<div class="actions">
+							<a class="primary" href="/similar?title=Inception" title="Try similar to Inception">Try example</a>
+							<a href="/discover" title="Go to search">Go to search</a>
+						</div>
+					</div>
+				</div>
+				<div class="service hero">
+					<div class="bg" style="background-image:url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1600');"></div>
+					<div class="content">
+						<h3>Explore by Emotion</h3>
+						<p>Slide through moods (Happy → Dark) to discover movies that fit your vibe—perfect when you’re not sure what to watch.</p>
+						<div class="actions">
+							<a class="primary" href="/mood" title="Explore by emotion">Explore now</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="testimonials">
+			<h2>What our users say</h2>
+			<div class="t-wrap">
+				<div class="t-items" id="t-items">
+					<div class="t-item">
+						<img class="t-avatar" src="https://i.pravatar.cc/100?img=12" alt="avatar">
+						<div>
+							<div class="t-name">Aisha Khan <span class="t-role">• Film lover</span></div>
+							<div class="t-stars">★★★★★</div>
+							<p class="t-quote">The mood slider nailed my vibe—found a perfect feel‑good comedy!</p>
+						</div>
+					</div>
+					<div class="t-item">
+						<img class="t-avatar" src="https://i.pravatar.cc/100?img=5" alt="avatar">
+						<div>
+							<div class="t-name">Lucas Silva <span class="t-role">• Night owl</span></div>
+							<div class="t-stars">★★★★☆</div>
+							<p class="t-quote">At midnight it suggested tight thrillers—exactly what I wanted.</p>
+						</div>
+					</div>
+					<div class="t-item">
+						<img class="t-avatar" src="https://i.pravatar.cc/100?img=32" alt="avatar">
+						<div>
+							<div class="t-name">Meera Patel <span class="t-role">• Weekend host</span></div>
+							<div class="t-stars">★★★★★</div>
+							<p class="t-quote">Group mode found something everyone enjoyed—no more endless scrolling.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="t-controls">
+				<div class="t-dot active" data-i="0"></div>
+				<div class="t-dot" data-i="1"></div>
+				<div class="t-dot" data-i="2"></div>
+			</div>
+		</section>
+
+		<div class="footer">
+			<span>© 2025 CineSuggest</span>
+			<span><a class="back" href="/discover">Open app →</a></span>
+		</div>
+	</div>
+
+	<footer class="site-footer">
+		<div class="footer-inner">
+			<span>© 2025 CineSuggest. All rights reserved.</span>
+			<div class="links">
+				<a href="#" title="Privacy Policy">Privacy</a>
+				<a href="#" title="Terms of Service">Terms</a>
+				<a href="/discover" title="Open the app">App</a>
+			</div>
+		</div>
+	</footer>
+	<script src="/static/app.js"></script>
+</body>
+</html>

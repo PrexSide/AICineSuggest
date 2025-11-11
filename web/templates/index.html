@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>AI Movie Recommender</title>
+	<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+	<div class="container">
+		<header class="header">
+			<h1>🎬 AI-Powered Movie Recommendation System</h1>
+			<button id="theme-toggle" title="Toggle between dark and light theme">🌓</button>
+		</header>
+
+		<div class="card">
+			<h2>Search by keywords</h2>
+			<form action="/search" method="get" class="form" id="search-form">
+				<input type="text" id="q" name="q" placeholder="Type keywords to describe movies" title="Type keywords like 'dream heist thriller' or 'space survival'" required autocomplete="off">
+				<div id="ac" class="autocomplete"></div>
+				<input type="number" name="k" value="12" min="3" max="50" placeholder="Results count" title="How many results to show">
+				<select name="genre" title="Genre filter">
+					<option value="">All genres (no filter)</option>
+					{% for g in genres %}<option value="{{ g }}">{{ g }}</option>{% endfor %}
+				</select>
+				<input type="number" name="year_min" placeholder="1990" title="Only show movies from this year and newer" min="1900" max="2030">
+				<input type="number" name="year_max" placeholder="2020" title="Only show movies from this year and earlier" min="1900" max="2030">
+				<select name="sort" title="Sort order">
+					<option value="relevance">Relevance (best match first)</option>
+					<option value="year_desc">Year ↓ (newer first)</option>
+					<option value="year_asc">Year ↑ (older first)</option>
+					<option value="title">Title A–Z</option>
+				</select>
+				<button type="submit" title="Run search">Search</button>
+			</form>
+		</div>
+
+		<div class="card">
+			<h2>Find similar to a movie</h2>
+			<form action="/similar" method="get" class="form" id="similar-form">
+				<input type="text" id="title" name="title" placeholder="Type a movie title" title="Type a movie title like 'Inception' or 'The Matrix'" required autocomplete="off">
+				<div id="ac-title" class="autocomplete"></div>
+				<input type="number" name="k" value="12" min="3" max="50" placeholder="Results count" title="How many similar movies to show">
+				<select name="genre" title="Genre filter">
+					<option value="">All genres (no filter)</option>
+					{% for g in genres %}<option value="{{ g }}">{{ g }}</option>{% endfor %}
+				</select>
+				<input type="number" name="year_min" placeholder="1990" title="Only show movies from this year and newer" min="1900" max="2030">
+				<input type="number" name="year_max" placeholder="2020" title="Only show movies from this year and earlier" min="1900" max="2030">
+				<select name="sort" title="Sort order">
+					<option value="relevance">Relevance (best match first)</option>
+					<option value="year_desc">Year ↓ (newer first)</option>
+					<option value="year_asc">Year ↑ (older first)</option>
+					<option value="title">Title A–Z</option>
+				</select>
+				<button type="submit" title="Find similar movies">Recommend</button>
+			</form>
+		</div>
+
+		<div class="card">
+			<h2>Explore by Emotion</h2>
+			<p class="muted">Slide through moods to discover matching movies.</p>
+			<a class="pill" href="/mood" title="Open Explore by Emotion">Open</a>
+		</div>
+
+		<section class="card" id="history">
+			<h2>Recent</h2>
+			<ul id="recent-list" class="list"></ul>
+		</section>
+	</div>
+	<script src="/static/app.js"></script>
+</body>
+</html>
